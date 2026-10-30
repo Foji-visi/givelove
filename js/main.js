@@ -101,8 +101,7 @@ function fixStyles(h){return h}
 
 /* ===== catalog ===== */
 let state={cat:'all',q:'',sort:'pop'};
-let cart=new Set(),fav=new Set();
-try{fav=new Set(JSON.parse(localStorage.getItem('rz-fav')||'[]'))}catch(e){}
+let cart=new Set();
 const byId=id=>ALL.find(x=>x.id===id);
 
 function renderChips(){
@@ -172,7 +171,6 @@ function openSheet(id){
       <div class="note"><b>Важно знать</b><span>Это цифровой товар, печать не входит в стоимость.</span><span>Для редактирования нужен аккаунт Canva, подойдёт бесплатный.</span><span>Шаблон для личного использования, перепродавать его нельзя.</span></div>
       <div class="buy" id="buyRow">
         <div class="btns" style="margin-left:0;width:100%">
-          <button class="btn ghost" data-fav="${t.id}" aria-pressed="${fav.has(t.id)}">${fav.has(t.id)?'В избранном':'В избранное'}</button>
           <button class="btn ghost" data-cart="${t.id}">В корзину</button>
           ${t.buyUrl?`<a class="btn" href="${t.buyUrl}" target="_blank" rel="noopener" style="margin-left:auto;text-decoration:none">Купить за ${rub(t.price)}</a>`:`<button class="btn" data-buy="${t.id}" style="margin-left:auto">Купить за ${rub(t.price)}</button>`}
         </div>
@@ -235,7 +233,7 @@ function closeReader(){$('#reader').hidden=true;if($('#sheetWrap').hidden)docume
 /* ===== misc ===== */
 let toastT;
 function toast(m){const el=$('#toast');el.textContent=m;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2600)}
-function badges(){$('#cartN').textContent=cart.size;$('#cartN').dataset.n=cart.size;$('#favN').textContent=fav.size;$('#favN').dataset.n=fav.size}
+function badges(){$('#cartN').textContent=cart.size;$('#cartN').dataset.n=cart.size}
 
 document.addEventListener('click',e=>{
   if(e.target.id==='sheetWrap'){closeSheet();return}
@@ -251,12 +249,9 @@ document.addEventListener('click',e=>{
   else if(d.go) $('#'+d.go).scrollIntoView({behavior:'smooth'});
   else if(d.cart){const t=byId(d.cart);cart.add(t.id);badges();toast(`«${t.name}» в корзине. Оформление заказа подключим позже.`)}
   else if(d.buy){const f=$('#orderForm');f.hidden=false;$('#buyRow').hidden=true;f.oName.focus();f.scrollIntoView({behavior:'smooth',block:'nearest'})}
-  else if(d.fav){fav.has(d.fav)?fav.delete(d.fav):fav.add(d.fav);try{localStorage.setItem('rz-fav',JSON.stringify([...fav]))}catch(_){}
-    b.textContent=fav.has(d.fav)?'В избранном':'В избранное';b.setAttribute('aria-pressed',fav.has(d.fav));badges()}
   else if(d.social) toast(`Ссылку на ${d.social} добавим, когда будет аккаунт.`);
   else if(d.doc) toast(`Страница «${d.doc}» появится позже.`);
   else if(b.id==='cartBtn') toast(cart.size?`В корзине: ${[...cart].map(id=>byId(id).name).join(', ')}. Оформление скоро появится.`:'Корзина пуста');
-  else if(b.id==='favBtn') toast(fav.size?`В избранном: ${[...fav].map(id=>byId(id)?.name).filter(Boolean).join(', ')}`:'В избранном пока ничего нет');
   else if(b.id==='logo'||b.id==='toTop') scrollTo({top:0,behavior:'smooth'});
   else if(b.id==='heroRead') openReader('imen',0);
 });
