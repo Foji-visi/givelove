@@ -129,6 +129,7 @@ nav.main button:hover{color:var(--accent)}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font-family:var(--display-it);font-size:24px;line-height:1;color:var(--accent);transition:transform .3s}
 .faq details[open] summary::after{transform:rotate(45deg)}
+.faq p a{color:var(--accent)}
 .faq p{margin:10px 0 0;color:var(--muted);font-size:15px;max-width:60ch}
 .contacts{display:flex;justify-content:center;gap:12px 40px;flex-wrap:wrap;padding-bottom:80px;font-size:15px}
 .contacts span{color:var(--muted)}
