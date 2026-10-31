@@ -101,6 +101,8 @@ nav.main button:hover{color:var(--accent)}
 .show-buy{position:relative;display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center}
 .price{font-family:var(--display);font-weight:400;font-size:26px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .price s{font-family:var(--ui);font-weight:300;font-size:15px;color:var(--muted);margin-left:8px}
+.show-meta .credit{margin-top:6px;font-size:11px;letter-spacing:.08em;text-transform:none;color:var(--muted);opacity:.85}
+.credit-note{margin:-6px 0 0;font-size:13px;color:var(--muted);background:var(--blush);border-radius:12px;padding:10px 14px}
 .empty{text-align:center;color:var(--muted);padding:48px 0}
 .duo{position:relative;padding-bottom:6%}
 .duo .cover:first-child{width:72%;box-shadow:var(--shadow)}
