@@ -123,13 +123,15 @@ function showBg(t){
   if(t.bgImg) return `url('${t.bgImg}')`;
   return `radial-gradient(60% 70% at 50% 38%, #ffffffcc, transparent 70%), linear-gradient(160deg, color-mix(in srgb, ${base.acc||'#B25D74'} 12%, #FDF1F3), color-mix(in srgb, ${base.acc||'#B25D74'} 22%, #F6DCE2))`;
 }
+/* Книга для каталога: под обложкой лежит первая страница, при наведении обложка приоткрывается */
+function book(t){return `<div class="book"><div class="book-inner">${page(t,1)}</div><div class="book-cover">${cover(t)}<span class="book-back"></span></div></div>`}
 function renderGrid(){
   const l=list();
   $('#count').textContent=`${l.length} ${l.length===1?'шаблон':l.length<5?'шаблона':'шаблонов'}`;
   $('#grid').innerHTML=l.length?l.map(t=>`<article class="show" style="--show-bg:${showBg(t)}">
     ${t.tag?`<span class="tag">${t.tag}</span>`:''}
     <button class="card ${t.isSet?'is-set':''}" data-open="${t.id}" aria-label="${esc(t.name)}, ${rub(t.price)}">
-      <div class="frame">${art(t)}<div class="peek"><span>Посмотреть журнал</span></div></div>
+      <div class="frame">${t.isSet?art(t):book(t)}<div class="peek"><span>Посмотреть журнал</span></div></div>
     </button>
     <div class="show-meta"><h3>${esc(t.name)}</h3><p>${t.catName} · ${t.pages} стр.</p>${t.credit?`<p class="credit">${esc(t.credit)}</p>`:''}</div>
     <div class="show-buy"><div class="price">${rub(t.price)}${t.old?`<s>${rub(t.old)}</s>`:''}</div><button class="btn" data-cart="${t.id}">В корзину</button></div>
