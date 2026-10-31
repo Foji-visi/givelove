@@ -13,10 +13,13 @@ function mfs(t,max,k){const w=/Unbounded/.test(t.font)?.78:1;return Math.min(max
 function vars(t){return `--c-bg:${t.bg};--c-fg:${t.fg};--c-acc:${t.acc};--c-font:'${t.font}',Georgia,serif;--p-bg:${t.pbg};--p-fg:${t.pfg}`}
 const REL='position:relative;border-radius:1cqw;height:';
 
+/* Пропорции страницы: у шаблона можно задать ratio:'567/765', по умолчанию A4 */
+const ar=t=>t.ratio?` style="aspect-ratio:${t.ratio}"`:'';
+const arNum=t=>{if(!t||!t.ratio)return 210/297;const [a,b]=t.ratio.split('/').map(Number);return a/b};
 function cover(t){
   const v=vars(t);
-  if(!t.coverImg&&t.pageImgs&&t.pageImgs[0]) return `<div class="cover"><img loading="lazy" decoding="async" src="${t.pageImgs[0]}" alt="Обложка «${esc(t.name)}»"></div>`;
-  if(t.coverImg) return `<div class="cover"><img loading="lazy" decoding="async" src="${t.coverImg}" alt="Обложка «${esc(t.name)}»"></div>`;
+  if(!t.coverImg&&t.pageImgs&&t.pageImgs[0]) return `<div class="cover"${ar(t)}><img loading="lazy" decoding="async" src="${t.pageImgs[0]}" alt="Обложка «${esc(t.name)}»"></div>`;
+  if(t.coverImg) return `<div class="cover"${ar(t)}><img loading="lazy" decoding="async" src="${t.coverImg}" alt="Обложка «${esc(t.name)}»"></div>`;
   if(t.layout==='classic') return `<div class="cover" style="${v}">
     ${ph(t,0,'Фото обложки','inset:0')}
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,${t.bg}00 40%,${t.bg}e6 88%)"></div>
@@ -64,7 +67,7 @@ const PAGE_LABELS=['Обложка','Содержание','Статья','Фо�
 function folio(t,n){return `<div class="folio"><span>${esc(t.mast)}</span><span>${n}</span></div>`}
 function page(t,i){
   const v=vars(t);
-  if(t.pageImgs&&t.pageImgs[i]) return `<div class="page"><img loading="lazy" decoding="async" src="${t.pageImgs[i]}" alt="«${esc(t.name)}», страница ${i+1}"></div>`;
+  if(t.pageImgs&&t.pageImgs[i]) return `<div class="page"${ar(t)}><img loading="lazy" decoding="async" src="${t.pageImgs[i]}" alt="«${esc(t.name)}», страница ${i+1}"></div>`;
   if(i===0) return cover(t);
   if(i===1) return `<div class="page" style="${v}"><div class="pg-in">
     <div class="kick">${esc(t.issue)}</div><h2 class="pg-title">Содержание</h2>
@@ -128,7 +131,7 @@ function renderGrid(){
     <button class="card ${t.isSet?'is-set':''}" data-open="${t.id}" aria-label="${esc(t.name)}, ${rub(t.price)}">
       <div class="frame">${art(t)}<div class="peek"><span>Посмотреть журнал</span></div></div>
     </button>
-    <div class="show-meta"><h3>${esc(t.name)}</h3><p>${t.catName} · ${t.pages} стр.</p></div>
+    <div class="show-meta"><h3>${esc(t.name)}</h3><p>${t.catName} · ${t.pages} стр.</p>${t.credit?`<p class="credit">${esc(t.credit)}</p>`:''}</div>
     <div class="show-buy"><div class="price">${rub(t.price)}${t.old?`<s>${rub(t.old)}</s>`:''}</div><button class="btn" data-cart="${t.id}">В корзину</button></div>
   </article>`).join('')
     :`<div class="empty">Ничего не нашлось. Попробуйте другой запрос или категорию.</div>`;
@@ -158,6 +161,7 @@ function openSheet(id){
       <h2>${t.isSet?'Набор':'Журнал'} <em>«${esc(t.name)}»</em></h2>
       <div class="big">${rub(t.price)}${t.old?`<s>${rub(t.old)}</s>`:''}</div>
       <p class="desc">${esc(t.desc)}</p>
+      ${t.credit?`<p class="credit-note">${esc(t.credit)}</p>`:''}
       ${t.isSet?`<p class="desc" style="margin-top:-8px">В наборе: ${parts.map(p=>`«${esc(p.name)}» (${p.pages} стр.)`).join(' и ')}.</p>`:''}
       <h3 class="sec-title">Что вы получаете</h3>
       <ul class="incl">
@@ -217,7 +221,7 @@ function renderReader(){
     </div>
     <div class="r-stage">
       <button class="nav-arrow" data-step="-1" ${R.s===0?'disabled':''} aria-label="Предыдущий разворот"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <div class="spread ${cur.length===1?'single':''}" id="spread">${cur.map(i=>`<div>${fixStyles(page(t,i))}</div>`).join('')}</div>
+      <div class="spread ${cur.length===1?'single':''}" id="spread" style="${(()=>{const r=arNum(t)*cur.length;const side=innerWidth<640?'100%':'100% - 136px';return `aspect-ratio:${r};width:min(calc(${side}),calc((100dvh - 230px) * ${r.toFixed(4)}))`})()}">${cur.map(i=>`<div>${fixStyles(page(t,i))}</div>`).join('')}</div>
       <button class="nav-arrow" data-step="1" ${R.s===sp.length-1?'disabled':''} aria-label="Следующий разворот"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
     <div class="r-strip">
