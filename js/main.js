@@ -133,7 +133,7 @@ function renderGrid(){
   </article>`).join('')
     :`<div class="empty">Ничего не нашлось. Попробуйте другой запрос или категорию.</div>`;
 }
-function renderFan(){$('#fan').innerHTML=['love','mama','bestie'].map(id=>cover(byId(id))).join('')}
+function renderFan(){$('#fan').innerHTML=['mama','love','bestie'].map(id=>cover(byId(id))).join('')}
 function renderGallery(){
   const ex=[['bestie',[1,2],'For Bestie · содержание и календарь'],['bestie',[11,12],'For Bestie · год в фото'],['bestie',[17,18],'For Bestie · плейлист'],['bestie',[29,30],'For Bestie · ваши моменты']];
   $('#gallery').innerHTML=ex.map(([id,p,l])=>{const t=byId(id);return `<button data-read="${id}" data-page="${p[0]}"><div class="pair">${p.map(i=>page(t,i)).join('')}</div><span>${l}</span></button>`}).join('');
