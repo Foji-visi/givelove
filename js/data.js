@@ -52,11 +52,39 @@ const T = [
   desc:'Журнал для мамы или бабушки: семейные фото разных лет, её рецепты и письма от детей и внуков.',
   toc:[['Семейный архив','Фото разных лет'],['Мамины рецепты','Блюда по её записям'],['Письма','Слова от детей и внуков']],
   q:'Всё, что я умею, я когда-то увидел у неё.'},
- {id:'love',name:'История любви',mast:'LOVE STORY',cat:'couple',catName:'Для пары',price:695,pages:24,pop:7,font:'Cormorant Garamond',bg:'#5E0F1F',fg:'#FBEFEF',acc:'#F2B8B8',pbg:'#FFF9F8',pfg:'#3A0A14',layout:'classic',
-  issue:'Номер для двоих',head:'Как мы встретились и что было дальше',subs:['Первое свидание','Наши места'],
-  desc:'Подарок на годовщину или 14 февраля: ваша история от знакомства до сегодняшнего дня в фотографиях и словах.',
-  toc:[['Знакомство','С чего всё началось'],['Наши места','Где мы были счастливы'],['Будущее','Мечты и планы на двоих']],
-  q:'Я понял, что это ты, ещё до того, как ты сказала «привет».'}
+ {id:'love',name:'История любви',cat:'couple',catName:'Для пары',price:695,pages:26,pop:7,
+  acc:'#E8355A',bg:'#F4D3DA',ratio:'567/765',
+  credit:'Пример оформления · дизайн Niko Magazines',
+  desc:'Журнал о вашей паре на 26 страниц: обложка с вашим фото, «Кто этот парень» и «Кто эта девушка», где всё начиналось, ваше лето, письмо о любви, лучший день, ваша музыка, фотоплёнка и заметки о любви.',
+  pageImgs:[
+    'images/templates/love/01.jpg',
+    'images/templates/love/02.jpg',
+    'images/templates/love/03.jpg',
+    'images/templates/love/04.jpg',
+    'images/templates/love/05.jpg',
+    'images/templates/love/06.jpg',
+    'images/templates/love/07.jpg',
+    'images/templates/love/08.jpg',
+    'images/templates/love/09.jpg',
+    'images/templates/love/10.jpg',
+    'images/templates/love/11.jpg',
+    'images/templates/love/12.jpg',
+    'images/templates/love/13.jpg',
+    'images/templates/love/14.jpg',
+    'images/templates/love/15.jpg',
+    'images/templates/love/16.jpg',
+    'images/templates/love/17.jpg',
+    'images/templates/love/18.jpg',
+    'images/templates/love/19.jpg',
+    'images/templates/love/20.jpg',
+    'images/templates/love/21.jpg',
+    'images/templates/love/22.jpg',
+    'images/templates/love/23.jpg',
+    'images/templates/love/24.jpg',
+    'images/templates/love/25.jpg',
+    'images/templates/love/26.jpg'
+  ]
+ }
 ];
 /* Наборы со скидкой. Пример: {id:'set-mama',name:'Мама + Любимой имениннице',items:['mama','bestie'],price:1100,old:1390,pop:7}, */
 const SETS=[
