@@ -90,7 +90,19 @@ nav.main button:hover{color:var(--accent)}
 .show .card.is-set{width:min(520px,86%)}
 .show .frame{position:relative;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .show .frame > .cover{box-shadow:var(--shadow)}
-.show .card:hover .frame{transform:translateY(-8px)}
+.show .card:hover .frame{transform:translateY(-4px)}
+/* полуоткрытая книга при наведении */
+.book{position:relative;perspective:2200px}
+.book-inner{position:absolute;inset:0;z-index:0}
+.book-inner .page{box-shadow:var(--shadow)}
+.book-inner::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(60,20,30,.35),rgba(60,20,30,.08) 8%,transparent 22%);opacity:0;transition:opacity .9s ease}
+.book-cover{position:relative;z-index:1;transform-origin:left center;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.3,.8,.25,1),filter 1s ease;will-change:transform}
+.book-cover > .cover{box-shadow:var(--shadow);backface-visibility:hidden}
+.book-back{position:absolute;inset:0;background:#F4EDEA;border-radius:3px;transform:rotateY(180deg);backface-visibility:hidden;box-shadow:inset -12px 0 18px -10px rgba(60,20,30,.25)}
+@media (hover:hover){
+  .show .card:hover .book-cover,.show .card:focus-visible .book-cover{transform:rotateY(-42deg);filter:brightness(1.03)}
+  .show .card:hover .book-inner::after,.show .card:focus-visible .book-inner::after{opacity:1}
+}
 .show .peek{position:absolute;left:50%;bottom:22px;transform:translate(-50%,8px);opacity:0;transition:.3s}
 .show .card:hover .peek,.show .card:focus-visible .peek{opacity:1;transform:translate(-50%,0)}
 .peek span{display:block;white-space:nowrap;background:rgba(255,255,255,.94);color:var(--ink);font-weight:400;font-size:13px;letter-spacing:.08em;padding:9px 18px;border-radius:999px}
