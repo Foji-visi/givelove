@@ -7,44 +7,35 @@
      bgImg:    'images/templates/imen/bg.jpg'
 */
 const T = [
- {id:'bestie',name:'Любимой имениннице',cat:'birthday',catName:'День рождения',price:795,pages:34,pop:11,tag:'Новинка',
-  acc:'#7FB0DC',bg:'#DDEBF7',
-  desc:'Журнал ко дню рождения лучшей подруги на 34 страницы: «Who is that girl?», детство, год в фото по месяцам, плейлист, стиль, «Your 18», что в сумочке, бьюти-секреты, любимые фильмы, ваши моменты и письмо от тебя.',
+ {id:'birthday',name:'Любимой имениннице',cat:'birthday',catName:'День рождения',price:795,pages:24,pop:11,tag:'Хит',
+  acc:'#E59AAE',bg:'#F6DDE3',ratio:'567/765',
+  credit:'Пример оформления · дизайн AMJ & Niko Magazines',
+  desc:'Журнал ко дню рождения на 24 страницы: обложка с фото именинницы, «Who’s that girl?», образ и что у неё в сумочке, любимые города, её аромат и макияж, лучшие моменты, фотогалерея, тест «Насколько хорошо ты её знаешь» и пожелания.',
   pageImgs:[
-    'images/templates/bestie/01.jpg',
-    'images/templates/bestie/02.jpg',
-    'images/templates/bestie/03.jpg',
-    'images/templates/bestie/04.jpg',
-    'images/templates/bestie/05.jpg',
-    'images/templates/bestie/06.jpg',
-    'images/templates/bestie/07.jpg',
-    'images/templates/bestie/08.jpg',
-    'images/templates/bestie/09.jpg',
-    'images/templates/bestie/10.jpg',
-    'images/templates/bestie/11.jpg',
-    'images/templates/bestie/12.jpg',
-    'images/templates/bestie/13.jpg',
-    'images/templates/bestie/14.jpg',
-    'images/templates/bestie/15.jpg',
-    'images/templates/bestie/16.jpg',
-    'images/templates/bestie/17.jpg',
-    'images/templates/bestie/18.jpg',
-    'images/templates/bestie/19.jpg',
-    'images/templates/bestie/20.jpg',
-    'images/templates/bestie/21.jpg',
-    'images/templates/bestie/22.jpg',
-    'images/templates/bestie/23.jpg',
-    'images/templates/bestie/24.jpg',
-    'images/templates/bestie/25.jpg',
-    'images/templates/bestie/26.jpg',
-    'images/templates/bestie/27.jpg',
-    'images/templates/bestie/28.jpg',
-    'images/templates/bestie/29.jpg',
-    'images/templates/bestie/30.jpg',
-    'images/templates/bestie/31.jpg',
-    'images/templates/bestie/32.jpg',
-    'images/templates/bestie/33.jpg',
-    'images/templates/bestie/34.jpg'
+    'images/templates/birthday/01.jpg',
+    'images/templates/birthday/02.jpg',
+    'images/templates/birthday/03.jpg',
+    'images/templates/birthday/04.jpg',
+    'images/templates/birthday/05.jpg',
+    'images/templates/birthday/06.jpg',
+    'images/templates/birthday/07.jpg',
+    'images/templates/birthday/08.jpg',
+    'images/templates/birthday/09.jpg',
+    'images/templates/birthday/10.jpg',
+    'images/templates/birthday/11.jpg',
+    'images/templates/birthday/12.jpg',
+    'images/templates/birthday/13.jpg',
+    'images/templates/birthday/14.jpg',
+    'images/templates/birthday/15.jpg',
+    'images/templates/birthday/16.jpg',
+    'images/templates/birthday/17.jpg',
+    'images/templates/birthday/18.jpg',
+    'images/templates/birthday/19.jpg',
+    'images/templates/birthday/20.jpg',
+    'images/templates/birthday/21.jpg',
+    'images/templates/birthday/22.jpg',
+    'images/templates/birthday/23.jpg',
+    'images/templates/birthday/24.jpg'
   ]
  },
  {id:'mama',name:'Дорогой маме',mast:'МАМА',cat:'family',catName:'Для семьи',price:695,pages:24,pop:8,font:'Prata',bg:'#CFD8C6',fg:'#25301F',acc:'#8A4F5B',pbg:'#FAFBF7',pfg:'#25301F',layout:'split',
@@ -86,7 +77,7 @@ const T = [
   ]
  }
 ];
-/* Наборы со скидкой. Пример: {id:'set-mama',name:'Мама + Любимой имениннице',items:['mama','bestie'],price:1100,old:1390,pop:7}, */
+/* Наборы со скидкой. Пример: {id:'set-mama',name:'Мама + Любимой имениннице',items:['mama','birthday'],price:1100,old:1390,pop:7}, */
 const SETS=[
 ].map(x=>({...x,isSet:true,cat:'sets',catName:'Набор из 2 шаблонов',tag:'−20%',pages:'2 × 24',desc:'Два шаблона по цене со скидкой: удобно, если поздравляете нескольких человек.'}));
 const ALL=[...T,...SETS];
