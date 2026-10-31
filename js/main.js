@@ -136,9 +136,9 @@ function renderGrid(){
   </article>`).join('')
     :`<div class="empty">Ничего не нашлось. Попробуйте другой запрос или категорию.</div>`;
 }
-function renderFan(){$('#fan').innerHTML=['mama','love','bestie'].map(id=>cover(byId(id))).join('')}
+function renderFan(){$('#fan').innerHTML=['mama','love','birthday'].map(id=>cover(byId(id))).join('')}
 function renderGallery(){
-  const ex=[['bestie',[1,2],'For Bestie · содержание и календарь'],['bestie',[11,12],'For Bestie · год в фото'],['bestie',[17,18],'For Bestie · плейлист'],['bestie',[29,30],'For Bestie · ваши моменты']];
+  const ex=[['birthday',[1,2],'Любимой имениннице · содержание'],['birthday',[9,10],'Любимой имениннице · образ и сумочка'],['love',[1,2],'История любви · содержание'],['love',[13,14],'История любви · лучший день']];
   $('#gallery').innerHTML=ex.map(([id,p,l])=>{const t=byId(id);return `<button data-read="${id}" data-page="${p[0]}"><div class="pair">${p.map(i=>page(t,i)).join('')}</div><span>${l}</span></button>`}).join('');
 }
 
@@ -257,7 +257,7 @@ document.addEventListener('click',e=>{
   else if(d.doc) toast(`Страница «${d.doc}» появится позже.`);
   else if(b.id==='cartBtn') toast(cart.size?`В корзине: ${[...cart].map(id=>byId(id).name).join(', ')}. Оформление скоро появится.`:'Корзина пуста');
   else if(b.id==='logo'||b.id==='toTop') scrollTo({top:0,behavior:'smooth'});
-  else if(b.id==='heroRead') openReader('bestie',0);
+  else if(b.id==='heroRead') openReader('birthday',0);
 });
 $('#q').addEventListener('input',e=>{state.q=e.target.value.trim();renderGrid()});
 $('#sort').addEventListener('change',e=>{state.sort=e.target.value;renderGrid()});
